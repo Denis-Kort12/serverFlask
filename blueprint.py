@@ -22,6 +22,10 @@ def create_post():
         title = request.form['title']
         body = request.form['body']
 
+        if title == "" or body == "":
+            print("ERROR")
+            return redirect(url_for('posts.index'))
+
         try:
             post = Post(title=title, body=body)
             db.session.add(post)
